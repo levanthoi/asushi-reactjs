@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Banner from 'src/components/Banner/Banner';
 import Helmet from 'src/components/Helmet/Helmet';
-import PageAbout from 'src/components/PageAbout';
 
 const Login = () => {
   return (

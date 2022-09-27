@@ -31,7 +31,7 @@ const CardVoucher = (props) => {
           </div>
           <div className="box-product-list-bottom box-product-voucher-bottom clearfix">
             <div className="box-qty clearfix">
-              <a href="!#" onclick="reductionQty(this)" className="reduction" />
+              <a href="!#" className="reduction" />
               <input
                 type="number"
                 className="qty-5572 form-control sc-quantity"
@@ -42,7 +42,7 @@ const CardVoucher = (props) => {
                 min={0}
                 step={0}
               />
-              <a href="!#" onclick="increaseQty(this)" className="increase" />
+              <a href="!#" className="increase" />
             </div>
             <div className="box-add-cart">
               <a

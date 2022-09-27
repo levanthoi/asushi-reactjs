@@ -95,7 +95,7 @@ const FormInput = (props) => {
             <option value=''>--- Chọn tỉnh/TP ---</option>
             {cities.map((city, index) => {
               return (
-                <option value={index}>{city}</option>
+                <option key={index} value={index}>{city}</option>
               )
             })}
           </select>

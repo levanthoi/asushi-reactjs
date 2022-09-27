@@ -1,15 +1,41 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import { Link, useParams } from "react-router-dom";
 import images from "src/static/images/images";
 import Banner from "../Banner/Banner";
 import PageAbout from "../PageAbout";
 import MenuProd from "./MenuProd";
-import {ProductList} from './DataMenu';
+import {DataProduct} from 'src/data/data';
+import {DataCategory} from 'src/data/data';
 
 const CardProduct = () => {
+  const {productId} = useParams();
+  const product = DataProduct.filter((product) => product.url_slug === productId)
+  const [listProduct, setListProduct] = useState(product);
+  const category = DataCategory.filter((menu) => menu.url === productId)
+  useEffect (() => {
+    const category = DataCategory.filter((menu) => menu.url === productId)
+    const product = DataProduct.filter((product) => product.categoryId === category[0].id)
+    setListProduct(product);
+  },[productId])
+
+  // thay đổi số lượng mua
+  const [count, setCount] = useState(1);
+  const inCrease = () => {
+    return (
+      setCount(pre => pre+1)
+    )
+  }
+  const deCrease = () => {
+    return (
+      count<=1 ? setCount(1) : setCount(pre => pre -1)
+    )
+  }
+  const updateCartItem = (v) => {
+    console.log(v);
+  }
   return (
     <>
-      <Banner />
+     <Banner />
       <main id="main" className="main clearfix">
         <PageAbout name="Thực đơn" nameJapan="麺類" />
         <div className="page-menu page-menu2 clearfix">
@@ -27,12 +53,13 @@ const CardProduct = () => {
                     >
                       <div className="item-product item-product2">
                         <div className="box-img-product">
+                        {/* {console.log("list: ",listProduct)} */}
                           <Link
-                            to="/khai-vi-pc,5699"
+                            to={`/product/${listProduct[0].url_slug}`}
                             title="Khai vị - アペタイザー"
                           >
                             <img
-                              src={images.khaivi}
+                              src={images[category[0].img]}
                               alt="Khai vị - アペタイザー"
                             />
                           </Link>
@@ -40,14 +67,14 @@ const CardProduct = () => {
                         <div className="box-info-product">
                           <h2>
                             <Link
-                              to="/khai-vi-pc,5699"
-                              title="Khai vị - アペタイザー"
+                              to={`/product/${listProduct[0].url_slug}`}
+                              title={`${category[0].name} - ${category[0].nameJapan}`}
                             >
                               <i className="bg-bip bg-bip-top"> </i>
-                              Khai vị <br />
+                              {category[0].name} <br />
                               <span className="language-japan">
                                 {" "}
-                                アペタイザー
+                                {category[0].nameJapan}
                               </span>
                               <i className="bg-bip bg-bip-bottom"> </i>
                             </Link>
@@ -56,16 +83,16 @@ const CardProduct = () => {
                       </div>
                       <div className="list-item-product">
                         <div className="row">
-                          {ProductList.map((item) => (
+                          {listProduct.map((item) => (
                             <div key={item.id} className="col-list col-md-4 col-sm-6 col-xs-6">
                               <div className="col-list-content">
                                 <div className="box-img box-img-product-list">
                                   <Link
-                                    to="/food-name-pd,5556"
+                                    to={`/product/${listProduct[0].url_slug}/food-name-${item.id}`}
                                     title={`${item.name} - ${item.nameJapan}`}
                                   >
                                     <img
-                                      src={item.img}
+                                      src={images[item.img]}
                                       alt={`${item.name} - ${item.nameJapan}`}
                                     />
                                   </Link>
@@ -73,7 +100,7 @@ const CardProduct = () => {
                                 <div className="box-info-product-list">
                                   <h4>
                                     <Link
-                                      to="/food-name-pd,5556"
+                                      to={`/product/${listProduct[0].url_slug}/food-name-${item.id}`}
                                       title={`${item.name} - ${item.nameJapan}`}
                                     >
                                       {item.name}<br />
@@ -86,24 +113,23 @@ const CardProduct = () => {
                                   <div className="box-product-list-bottom clearfix">
                                     <div className="box-qty clearfix">
                                       <div
-                                        href="/"
-                                        onclick="reductionQty(this)"
                                         className="reduction"
+                                        onClick = {deCrease}
                                       />
                                       <input
                                         type="number"
                                         className="qty-5556 form-control sc-quantity"
                                         max-lenght={3}
-                                        defaultValue={1}
+                                        value={count}
+                                        onChange={(value) => updateCartItem(value)}
                                         name="qty"
                                         max={100}
                                         min={0}
                                         step={0}
                                       />
                                       <div
-                                        href="/"
-                                        onclick="increaseQty(this)"
                                         className="increase"
+                                        onClick={inCrease}
                                       />
                                     </div>
                                     <div className="box-add-cart">

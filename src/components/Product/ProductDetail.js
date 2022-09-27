@@ -1,21 +1,50 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import { Link, useParams } from "react-router-dom";
 import images from "src/static/images/images";
 import Banner from "../Banner/Banner";
 import PageAbout from "../PageAbout";
 import MenuProd from "./MenuProd";
+import { DataProduct } from "src/data/data";
+import shop from "src/helper/shop";
 
 
 const ProductDetail = () => {
+  const {productIdChild} = useParams();
+  const [productDetail, setProductDetail] = useState({});
+  const [count, setCount] = useState(1);
+  useEffect (() => {
+    const productDetail = DataProduct.filter((ele) => `food-name-${ele.id}` === productIdChild)
+    // console.log(productDetail);
+    setProductDetail(productDetail[0]);
+  }, [productIdChild])
+
+  const {id, img, des, price, name, nameJapan} = productDetail;
+
+  const width = window.innerWidth;
+  let BoxContainer = {};
+  if(width > 1024) BoxContainer ={width: 1069, margin:" 0 auto"};
+  let arrCount = [];
+  // thay đổi số lượng mua
+  const inCrease = (id) => {
+    return (
+      arrCount[id] = setCount(pre => pre+1)
+      )
+    }
+    const deCrease = (id) => {
+      return (
+        count<=1 ? setCount(1) : setCount(pre => pre -1)
+        )
+      }
+      console.log(arrCount);
   return (
     <>
       <Banner />
       <main id="main" className="main clearfix">
         <PageAbout name="Thực đơn" nameJapan="麺類" />
-        <div classname="page-menu page-menu2 clearfix">
-          <div classname="container">
-            <div classname="menu-title menu-title2">
-              <div classname="menu-product-content menu-product2-content">
+        <div className="page-menu page-menu3 clearfix">
+          <div className="container" style={BoxContainer}>
+            <div className="menu-title menu-title3">
+              <div className="menu-product-content menu-product2-content">
                 <div data-example-id="togglable-tabs">
                   <MenuProd />
                   <div id="myTabContent" className="tab-content">
@@ -34,11 +63,11 @@ const ProductDetail = () => {
                             <div className="box-img box-img-product-detail">
                               <a
                                 href="!#"
-                                title="Salad Tôm Và Cá Ngừ -  シュリンプと鮪のサラダ"
+                                title={`${name} - ${nameJapan}`}
                               >
                                 <img
-                                  src={images.imgspmenu2}
-                                  alt="Salad Tôm Và Cá Ngừ -  シュリンプと鮪のサラダ"
+                                  src={images[img]}
+                                  alt={`${name} - ${nameJapan}`}
                                 />
                               </a>
                             </div>
@@ -46,50 +75,41 @@ const ProductDetail = () => {
                           <div className="col-detail col-sm-6 col-xs-12">
                             <div className="box-info-product-detail">
                               <h1>
-                                Salad Tôm Và Cá Ngừ <br />
-                                <span> シュリンプと鮪のサラダ</span>
+                                {name} <br />
+                                <span> {nameJapan}</span>
                               </h1>
                               <div className="box-price clearfix">
-                                <span className="price">40.000 VND</span>
+                                <span className="price">{price} VND</span>
                               </div>
                               <div className="description-detail">
                                 <p>
-                                  Ei est doctus persius. Cum cu putant iuvaret
-                                  voluptatibus, eu dolore primis vix, singulis
-                                  accusamus te quo. Homero saperet iudicabit ut
-                                  eum, et eam everti abhorreant, eos essent
-                                  dolores scriptorem ut. Tibique epicuri no vis,
-                                  quo epicuri appareat id.
+                                  {des}
                                 </p>
                                 <p>
-                                  Lorem ipsum dolor sit amet, consectetur
-                                  adipisicing elit, sed do eiusmod tempor
-                                  incididunt.Lorem ipsum dolor sit amet,
-                                  consectetur adipisicing elit, sed do eiusmod
-                                  tempor incididunt.
+                                  {des}
                                 </p>
                               </div>
                               <div className="box-product-list-bottom box-product-detail-bottom clearfix">
                                 <div className="box-qty clearfix">
-                                  <a
-                                    href="!#"
+                                  <div
                                     id="reduction"
                                     className="reduction"
+                                    onClick={() => deCrease(id)}
                                   />
                                   <input
                                     id="product_quantity"
                                     type="number"
                                     className="form-control sc-quantity"
                                     max-lenght={3}
-                                    defaultValue={1}
+                                    value={count}
                                     name="qty"
                                     min={0}
                                     step={0}
                                   />
-                                  <a
-                                    href="!#"
+                                  <div
                                     id="increase"
                                     className="increase"
+                                    onClick={() =>inCrease(id)}
                                   />
                                 </div>
                                 <div className="box-add-cart">

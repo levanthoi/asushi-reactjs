@@ -1,0 +1,72 @@
+[
+    {
+      "id": 1,
+      "url": "khai-vi",
+      "name": "Khai vị",
+      "nameJapan": "アペタイザー",
+      "img": "khaivi"
+    },
+    {
+      "id": 2,
+      "url": "mon-nuong",
+      "name": "Món nướng",
+      "nameJapan": "焼き",
+      "img": "monnuong"
+    },
+    {
+      "id": 3,
+      "url": "sashi",
+      "name": "Sashimi, sushi",
+      "nameJapan": " 刺身 , 寿司",
+      "img": "sashimi"
+    },
+    {
+      "id": 4,
+      "url": "mon-chien",
+      "name": "Món chiên",
+      "nameJapan": "揚げ",
+      "img": "monchien"
+    },
+    {
+      "id": 5,
+      "url": "com-chao",
+      "name": "Cơm, cháo",
+      "nameJapan": "米, ポリッジ",
+      "img": "comchao"
+    },
+    {
+      "id": 6,
+      "url": "mon-mi",
+      "name": "Món mì",
+      "nameJapan": "麺類",
+      "img": "monmi"
+    },
+    {
+      "id": 7,
+      "url": "teppanyaki",
+      "name": "Teppanyaki",
+      "nameJapan": "鉄板焼き",
+      "img": "teppa"
+    },
+    {
+      "id": 8,
+      "url": "mon-om",
+      "name": "Món om",
+      "nameJapan": "煮る",
+      "img": "monom"
+    },
+    {
+      "id": 9,
+      "url": "mon-lau",
+      "name": "Món lẩu",
+      "nameJapan": " 鍋",
+      "img": "monlau"
+    },
+    {
+      "id": 10,
+      "url": "mon-dac-biet",
+      "name": "Món đặc biệt",
+      "nameJapan": "?",
+      "img": "mondacbiet"
+    }
+  ]

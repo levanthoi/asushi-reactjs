@@ -5,14 +5,14 @@ const BoxItem = () => {
   return (
     <div className="col-about-us2">
       <div className="box-img-about-us2">
-        <a href="javascript:void(0)" title="MIOSHIKAWA">
+        <a href="!#" title="MIOSHIKAWA">
           <img src={images.imgabout1} alt="MIOSHIKAWA" />
         </a>
       </div>
       <div className="box-info-about-us2">
         <div className="name-teacher">
           <h3>
-            <a href="javascript:void(0)" title="MIOSHIKAWA">
+            <a href="!#" title="MIOSHIKAWA">
               MIOSHIKAWA
             </a>
           </h3>

@@ -3,6 +3,7 @@ import Banner from 'src/components/Banner/Banner';
 import Helmet from 'src/components/Helmet/Helmet';
 import CardNew from 'src/components/New/CardNew';
 import PageAbout from 'src/components/PageAbout';
+import {DataNews} from 'src/data/data'
 
 const New = () => {
   return (
@@ -14,13 +15,9 @@ const New = () => {
           <div className="container">
             <div className="new-content new-content1" style={{ marginBottom: 20 }}>
               <div className="row">
-                <CardNew />
-                <CardNew />
-                <CardNew />
-                <CardNew />
-                <CardNew />
-                <CardNew />
-                
+                {DataNews.map((item) => (
+                  <CardNew key={item.id} itemNew={item} />
+                ))}  
               </div>
             </div>
             <div

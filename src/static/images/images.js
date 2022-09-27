@@ -25,6 +25,23 @@ import voucher1 from 'src/static/images/907_1451977697_935568b6be15d70d.jpg';
 import new1 from 'src/static/images/572_1451980062_644568b751ed096b.jpg';
 import new2 from 'src/static/images/img_new2.jpg';
 import new3 from 'src/static/images/img_new3.jpg';
+import salad from 'src/static/images/img-products/salad.png';
+import tomNuong from 'src/static/images/img-products/mon-nuong/tom-nuong.jpg';
+import bachTuocNuong from 'src/static/images/img-products/mon-nuong/bach-tuoc-nuong.jpg';
+import nomSua from 'src/static/images/img-products/khai-vi/nom-sua.jpg';
+import nomGaHoaChuoi from 'src/static/images/img-products/khai-vi/nom-ga-hoa-chuoi.jpg';
+import nomBoBopThau from 'src/static/images/img-products/khai-vi/nom-bo-bop-thau.jpg';
+import chaoThitGa from 'src/static/images/img-products/com-chao/chao-thit-ga.jpeg';
+import chaoThitBam from 'src/static/images/img-products/com-chao/nau-chao-thit-bam-khoai-lang.jpg';
+import thitHeoChien from 'src/static/images/img-products/mon-chien/thit-heo-chien.jpg';
+import dauRimManNgot from 'src/static/images/img-products/mon-dac-biet/dau-rim-man-ngot.jpeg';
+import lauMam from 'src/static/images/img-products/mon-lau/lau-mam.jpg';
+import mixaothapcam from 'src/static/images/img-products/mon-mi/mi-xao-thap-cam.jpg';
+import ocomchuoi from 'src/static/images/img-products/mon-om/oc-om-chuoi.jpeg';
+import sashimicahoi from 'src/static/images/img-products/sashimi/sashimi-ca-hoi.jpg';
+import kobeteppa from 'src/static/images/img-products/teppa/teppa1.jpg';
+import new4 from 'src/static/images/img-new/nom-tai-heo-cac-mon-nhau-ngon.jpg';
+
 
 
 
@@ -55,7 +72,11 @@ const images = {
     voucher1,
     new1,
     new2,
-    new3
+    new3,new4,
+    salad,
+    tomNuong,kobeteppa,sashimicahoi,ocomchuoi,mixaothapcam,lauMam,dauRimManNgot,
+    thitHeoChien,chaoThitBam,chaoThitGa,nomBoBopThau,nomGaHoaChuoi,bachTuocNuong,
+    nomSua,
 }
 
 export default images;

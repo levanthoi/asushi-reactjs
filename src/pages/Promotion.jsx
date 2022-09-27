@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import Banner from "src/components/Banner/Banner";
 import Helmet from "src/components/Helmet/Helmet";
 import PageAbout from "src/components/PageAbout";
@@ -7,7 +8,14 @@ import DataPromotion from "src/components/Promotion/DataPromotion";
 import images from "src/static/images/images";
 
 
+
 const Promotion = () => {
+  const [active, setActive] = useState(false);
+
+  console.log(active);
+  const handleClick = (id) => {
+    console.log('saas',{id});
+  }
   return (
     <Helmet title="Khuyến mãi">
       <Banner />
@@ -20,10 +28,23 @@ const Promotion = () => {
                 <div className="list-promotion">
                   <div className="mush" dir="rtl">
                     {DataPromotion.map((item) => (
-                      <CardPromotion />
+                      <div key={item.id}
+                      style={{ cursor: "pointer" }}
+                      title="Lorem ipsum dolor sit amet"
+                      name={4}
+                      className={`title-promotion ms-thumb ${active ? "active" :''}`}
+                      onClick={handleClick}
+                    >
+                      <i className="icon-news" />
+                      <h4>{item.title}</h4>
+                      <span>
+                        {item.subtitle} 
+                      </span>
+                      <div className="wrap-social">
+                        <span className="publicdate">12/09/2016</span>
+                      </div>
+                    </div>
                     ))}
-                    
-                    
                   </div>
                 </div>
               </div>
@@ -77,7 +98,7 @@ const Promotion = () => {
           </div>
         </div>
       </main>
-    </Helmet>
+    </Helmet >
   );
 };
 

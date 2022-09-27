@@ -2,18 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import images from "src/static/images/images";
 
-const CardNew = () => {
+const CardNew = (props) => {
+  const {id, title, des, image} = props.itemNew;
   return (
     <div className="col-new col-sm-6 col-xs-6">
       <div className="col-new-content">
         <div className="box-img box-img-new">
           <Link
-            to="/huong-vi-tinh-khiet-len-ngoi-nd-2038"
-            title="Khuyến mãi cho set ăn Hải sản"
+            to={`/new/${id}`}
+            title={title}
           >
             <img
-              src={images.new1}
-              alt="Khuyến mãi cho set ăn Hải sản"
+              src={images[image[0]]}
+              alt={title}
             />
           </Link>
         </div>
@@ -21,32 +22,30 @@ const CardNew = () => {
           <div className="box-info-new-title">
             <h3>
               <Link
-                to="/huong-vi-tinh-khiet-len-ngoi-nd-2038"
-                title="Khuyến mãi cho set ăn Hải sản"
+                to={`/new/${id}`}
+                title={title}
               >
-                Khuyến mãi cho set ăn Hải sản{" "}
+                {title}{" "}
               </Link>
             </h3>
           </div>
           <div className="description-new">
             <p>
-              Nhân dịp năm mới , Nhà hàng Gia Viên xin gửi đến quý khách hàng
-              chương trình đặc biệt với những ưu đãi vô cùng hấp dẫn: giảm giá
-              cho set ăn từ 4-6 người, tặng voucher giảm giá:
+              {des}
               <br />
-              <br />
+              {/* <br />
               Giảm giá 15 % cho set ăn 4-6 người
               <br />
               <br />
               Giảm 20 % cho set ăn trên 6 người
               <br />
               <br />
-              Giảm giá 20 % cho đồ ăn Hải sản
+              Giảm giá 20 % cho đồ ăn Hải sản */}
             </p>
           </div>
           <div className="box-view box-view-new">
             <Link
-              to="/huong-vi-tinh-khiet-len-ngoi-nd-2038"
+              to={`/new/${id}`}
               title="XEM TIẾP ...."
             >
               XEM TIẾP ....

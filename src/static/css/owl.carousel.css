@@ -42,11 +42,11 @@
 }
 	
 .owl-carousel .owl-item{
-	width: inherit;
+	width: 100%;
 	height: inherit;
-	display: flex;
+	/* display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: center; */
 	/* float: left; */
 }
 
