@@ -1,11 +1,23 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import ChildrenItem from 'src/components/Payment/ChildrenItem'
-import ColItem from 'src/components/Payment/ColItem'
-import ItemCity from 'src/components/Payment/ItemCity'
-import images from 'src/static/images/images'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import CardInput from 'src/components/CardInput';
+import ChildrenItem from 'src/components/Payment/ChildrenItem';
+import ColItem from 'src/components/Payment/ColItem';
+import ItemCity from 'src/components/Payment/ItemCity';
+import { DataPayment } from 'src/data/data';
+import images from 'src/static/images/images';
+
 
 const PaymentDetail = () => {
+  // const { name, classOne,classTwo, classThree, classFour, label1, label2 }
+  const box = {
+    classOne: "",
+    classTwo: "",
+    classThree: "",
+    classFour: "",
+    label: "Billing",
+  }
+
   return (
     <div className="row">
       <div className="col-lg-7 col-md-7 col-sm-12 col-xs-12 pad-10">
@@ -18,6 +30,37 @@ const PaymentDetail = () => {
               <b>Tôi muốn thanh toán và nhận hàng tại :</b>
               <div className="row">
                 <ColItem>
+                  {DataPayment.slice(0, DataPayment.length/2).map((item) => {
+                    return(
+                      <CardInput key={item.id} box={box} item={item}  />
+                    )
+                  })}
+                </ColItem>
+                {/* <ColItem>
+                  {DataPayment.slice(DataPayment.length/2).map((item) => {
+                    return(
+                      <CardInput key={item.id} box={box} item={item}  />
+                    )
+                  })}
+                </ColItem> */}
+                {/* {DataPayment.map((item) => {
+                  const { id, name, isImportant } = item;
+                  return (
+                    <>
+                      {
+                        DataPayment.length / 2 >= id ?
+                          <ColItem>
+                            <cardInput label="name" label2='Billing' name='Họ và tên' />
+                          </ColItem>
+                          : <ColItem>
+                            <cardInput label="name" label2='Billing' name='Họ và tên' />
+                          </ColItem>
+
+                      }
+                    </>
+                  )
+                })} */}
+                {/* <ColItem>
                   <ChildrenItem label="name" label2='Billing' name='Họ và tên' />
                   <ChildrenItem label="phone" label2='Billing' name='Số điện thoại' />
                   <ChildrenItem label="email" label2='Billing' name='Email' />
@@ -28,7 +71,7 @@ const PaymentDetail = () => {
                 <ColItem>
                   <ItemCity label='city' name='Thành phố/Tỉnh' />
                   <ItemCity label='district' name='Quận/Huyện/TX' />
-                </ColItem>
+                </ColItem> */}
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <div className="panel-body">
                     <ChildrenItem label="note" label2='Orders' name='Ghi chú' />
@@ -111,7 +154,7 @@ const PaymentDetail = () => {
               maxLength={30}
             />
             <input
-              onclick="getdiscount();"
+              // onclick="getdiscount();"
               type="button"
               className="btn-submit-voucher"
               defaultValue="Gửi"

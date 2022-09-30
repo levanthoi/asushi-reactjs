@@ -1,41 +1,69 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import images from "src/static/images/images";
 import Banner from "../Banner/Banner";
 import PageAbout from "../PageAbout";
 import MenuProd from "./MenuProd";
-import {DataProduct} from 'src/data/data';
-import {DataCategory} from 'src/data/data';
+import { DataProduct } from "src/data/data";
+import { DataCategory } from "src/data/data";
+import shop from "src/helper/shop";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "src/redux/reducers/cartSlice";
 
 const CardProduct = () => {
-  const {productId} = useParams();
-  const product = DataProduct.filter((product) => product.url_slug === productId)
+  const { productId } = useParams();
+  const product = DataProduct.filter(
+    (product) => product.url_slug === productId
+  );
+  const category = DataCategory.filter((menu) => menu.url === productId)[0];
   const [listProduct, setListProduct] = useState(product);
-  const category = DataCategory.filter((menu) => menu.url === productId)
-  useEffect (() => {
-    const category = DataCategory.filter((menu) => menu.url === productId)
-    const product = DataProduct.filter((product) => product.categoryId === category[0].id)
-    setListProduct(product);
-  },[productId])
+  const dispatch = useDispatch();
 
-  // thay đổi số lượng mua
-  const [count, setCount] = useState(1);
-  const inCrease = () => {
-    return (
-      setCount(pre => pre+1)
-    )
+  useEffect(() => {
+    const product = DataProduct.filter(
+      (product) => product.categoryId === category.id
+    );
+    setListProduct(product);
+  }, [productId]);
+
+  const handleSubmit = (id, quantity, name, nameJapan, price, img) => {
+    // e.preventDefault();
+    const cartItem = {
+      id: id,
+      img: img,
+      name: name,
+      nameJapan: nameJapan,
+      price: price,
+      quantity: quantity
+    }
+    dispatch(addToCart(cartItem));
   }
-  const deCrease = () => {
-    return (
-      count<=1 ? setCount(1) : setCount(pre => pre -1)
-    )
-  }
-  const updateCartItem = (v) => {
-    console.log(v);
-  }
+
+  const updateQuantity = (id, e, type) => {
+    const item = listProduct.filter((item) => item.id === id)[0];
+    console.log("item", item);
+    const updateCart = listProduct.map((curElem) => {
+      if (curElem.id === id) {
+        switch(type){
+          case 'increase':
+            return { ...curElem, quantity: curElem.quantity + 1 };
+            break;
+          case 'decrease':
+            if(curElem.quantity>1) return { ...curElem, quantity: curElem.quantity - 1 };
+            break;
+          case 'change':
+            if(curElem.quantity>=1) return {...curElem, quantity: e.target.value };
+            break;
+        }
+      }
+      return curElem;
+    });
+    setListProduct(updateCart);
+  };
+
   return (
     <>
-     <Banner />
+      <Banner />
       <main id="main" className="main clearfix">
         <PageAbout name="Thực đơn" nameJapan="麺類" />
         <div className="page-menu page-menu2 clearfix">
@@ -53,13 +81,13 @@ const CardProduct = () => {
                     >
                       <div className="item-product item-product2">
                         <div className="box-img-product">
-                        {/* {console.log("list: ",listProduct)} */}
+                          {/* {console.log("list: ",listProduct)} */}
                           <Link
-                            to={`/product/${listProduct[0].url_slug}`}
+                            to={`/product/${category.url}`}
                             title="Khai vị - アペタイザー"
                           >
                             <img
-                              src={images[category[0].img]}
+                              src={images[category.img]}
                               alt="Khai vị - アペタイザー"
                             />
                           </Link>
@@ -67,14 +95,14 @@ const CardProduct = () => {
                         <div className="box-info-product">
                           <h2>
                             <Link
-                              to={`/product/${listProduct[0].url_slug}`}
-                              title={`${category[0].name} - ${category[0].nameJapan}`}
+                              to={`/product/${category.url}`}
+                              title={`${category.name} - ${category.nameJapan}`}
                             >
                               <i className="bg-bip bg-bip-top"> </i>
-                              {category[0].name} <br />
+                              {category.name} <br />
                               <span className="language-japan">
                                 {" "}
-                                {category[0].nameJapan}
+                                {category.nameJapan}
                               </span>
                               <i className="bg-bip bg-bip-bottom"> </i>
                             </Link>
@@ -83,70 +111,92 @@ const CardProduct = () => {
                       </div>
                       <div className="list-item-product">
                         <div className="row">
-                          {listProduct.map((item) => (
-                            <div key={item.id} className="col-list col-md-4 col-sm-6 col-xs-6">
-                              <div className="col-list-content">
-                                <div className="box-img box-img-product-list">
-                                  <Link
-                                    to={`/product/${listProduct[0].url_slug}/food-name-${item.id}`}
-                                    title={`${item.name} - ${item.nameJapan}`}
-                                  >
-                                    <img
-                                      src={images[item.img]}
-                                      alt={`${item.name} - ${item.nameJapan}`}
-                                    />
-                                  </Link>
-                                </div>
-                                <div className="box-info-product-list">
-                                  <h4>
+                          {listProduct.map((item) => {
+                            const {
+                              id,
+                              img,
+                              price,
+                              name,
+                              quantity,
+                              nameJapan,
+                            } = item;
+                            return (
+                              <div
+                                key={id}
+                                className="col-list col-md-4 col-sm-6 col-xs-6"
+                              >
+                                <div className="col-list-content">
+                                  <div className="box-img box-img-product-list">
                                     <Link
-                                      to={`/product/${listProduct[0].url_slug}/food-name-${item.id}`}
-                                      title={`${item.name} - ${item.nameJapan}`}
+                                      to={`/product/${category.url}/food-name-${id}`}
+                                      title={`${name} - ${nameJapan}`}
                                     >
-                                      {item.name}<br />
-                                      <span> {item.nameJapan}</span>
+                                      <img
+                                        src={img}
+                                        alt={`${name} - ${nameJapan}`}
+                                      />
                                     </Link>
-                                  </h4>
-                                  <div className="box-price clearfix">
-                                    <span className="price">{item.price} VND</span>
                                   </div>
-                                  <div className="box-product-list-bottom clearfix">
-                                    <div className="box-qty clearfix">
-                                      <div
-                                        className="reduction"
-                                        onClick = {deCrease}
-                                      />
-                                      <input
-                                        type="number"
-                                        className="qty-5556 form-control sc-quantity"
-                                        max-lenght={3}
-                                        value={count}
-                                        onChange={(value) => updateCartItem(value)}
-                                        name="qty"
-                                        max={100}
-                                        min={0}
-                                        step={0}
-                                      />
-                                      <div
-                                        className="increase"
-                                        onClick={inCrease}
-                                      />
-                                    </div>
-                                    <div className="box-add-cart">
-                                      <a
-                                        href = "!#"
-                                        className="btn_add_food"
-                                        name={5556}
-                                        title="chọn món"
+                                  <div className="box-info-product-list">
+                                    <h4>
+                                      <Link
+                                        to={`/product/${category.url}/food-name-${id}`}
+                                        title={`${name} - ${nameJapan}`}
                                       >
-                                        chọn món
-                                      </a>
+                                        {name}
+                                        <br />
+                                        <span> {nameJapan}</span>
+                                      </Link>
+                                    </h4>
+                                    <div className="box-price clearfix">
+                                      <span className="price">
+                                        {shop.formatProductPrice(price)} VNĐ
+                                      </span>
+                                    </div>
+                                    <div className="box-product-list-bottom clearfix">
+                                      <div className="box-qty clearfix">
+                                        <div
+                                          className="reduction"
+                                          onClick={(e) =>
+                                            updateQuantity(id,e, "decrease")
+                                          }
+                                        />
+                                        <input
+                                          type="number"
+                                          className="qty-5556 form-control sc-quantity"
+                                          max-lenght={3}
+                                          value={quantity}
+                                          onChange={(e) =>
+                                            updateQuantity(id, e, "change")
+                                          }
+                                          name="qty"
+                                          max={100}
+                                          min={0}
+                                          step={0}
+                                        />
+                                        <div
+                                          className="increase"
+                                          onClick={(e) =>
+                                            updateQuantity(id,e,  "increase")
+                                          }
+                                        />
+                                      </div>
+                                      <div className="box-add-cart">
+                                        <a
+                                          onClick={() => handleSubmit(id, quantity, name, nameJapan, price, img)}
+                                          className="btn_add_food"
+                                          name={5556}
+                                          title="chọn món"
+                                        >
+                                          chọn món
+                                        </a>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          ))}
+                            );
+                          })}
                         </div>
                       </div>
                     </div>

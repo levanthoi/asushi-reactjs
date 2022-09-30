@@ -13,7 +13,7 @@ const ItemCity = (props) => {
           <option value="">Chọn tỉnh/thành phố</option>
           {cities.map((city,index) => {
             return(
-              <option value={index}>{city}</option>
+              <option key={index} value={index}>{city}</option>
             )
           })}
           

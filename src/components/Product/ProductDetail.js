@@ -6,36 +6,40 @@ import PageAbout from "../PageAbout";
 import MenuProd from "./MenuProd";
 import { DataProduct } from "src/data/data";
 import shop from "src/helper/shop";
+import { useDispatch } from "react-redux";
+import { addToCart} from "src/redux/reducers/cartSlice";
 
 
 const ProductDetail = () => {
   const {productIdChild} = useParams();
-  const [productDetail, setProductDetail] = useState({});
-  const [count, setCount] = useState(1);
+  const [productDetail, setProductDetail] = useState([]);
+  const [quantity, setQuantity] = useState(1);
   useEffect (() => {
     const productDetail = DataProduct.filter((ele) => `food-name-${ele.id}` === productIdChild)
-    // console.log(productDetail);
     setProductDetail(productDetail[0]);
   }, [productIdChild])
 
+  const dispatch = useDispatch();
   const {id, img, des, price, name, nameJapan} = productDetail;
 
   const width = window.innerWidth;
   let BoxContainer = {};
   if(width > 1024) BoxContainer ={width: 1069, margin:" 0 auto"};
-  let arrCount = [];
-  // thay đổi số lượng mua
-  const inCrease = (id) => {
-    return (
-      arrCount[id] = setCount(pre => pre+1)
-      )
+ console.log("productDetail", productDetail);
+
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    console.log("quantity", quantity);
+    const cartItem ={
+      id: id,
+      img: img,
+      price: price,
+      name: name,
+      nameJapan: nameJapan,
+      quantity: quantity
     }
-    const deCrease = (id) => {
-      return (
-        count<=1 ? setCount(1) : setCount(pre => pre -1)
-        )
-      }
-      console.log(arrCount);
+    dispatch(addToCart(cartItem));
+  }
   return (
     <>
       <Banner />
@@ -66,7 +70,7 @@ const ProductDetail = () => {
                                 title={`${name} - ${nameJapan}`}
                               >
                                 <img
-                                  src={images[img]}
+                                  src={img}
                                   alt={`${name} - ${nameJapan}`}
                                 />
                               </a>
@@ -79,7 +83,7 @@ const ProductDetail = () => {
                                 <span> {nameJapan}</span>
                               </h1>
                               <div className="box-price clearfix">
-                                <span className="price">{price} VND</span>
+                                <span className="price">{shop.formatProductPrice(price)} VND</span>
                               </div>
                               <div className="description-detail">
                                 <p>
@@ -94,14 +98,17 @@ const ProductDetail = () => {
                                   <div
                                     id="reduction"
                                     className="reduction"
-                                    onClick={() => deCrease(id)}
+                                    onClick={() => {
+                                      if( quantity > 1) setQuantity(pre => pre -1 )
+                                    }}
                                   />
                                   <input
                                     id="product_quantity"
                                     type="number"
                                     className="form-control sc-quantity"
                                     max-lenght={3}
-                                    value={count}
+                                    value={quantity}
+                                    onChange={(e) => setQuantity(e.target.value)}
                                     name="qty"
                                     min={0}
                                     step={0}
@@ -109,14 +116,14 @@ const ProductDetail = () => {
                                   <div
                                     id="increase"
                                     className="increase"
-                                    onClick={() =>inCrease(id)}
+                                    onClick={() => setQuantity(pre => pre +1)}
                                   />
                                 </div>
                                 <div className="box-add-cart">
                                   <Link
+                                     onClick={handleSubmit}
                                     data-params="#product-detail-info"
                                     className="addtocart"
-                                    to="/product"
                                     title="chọn món"
                                   >
                                     chọn món

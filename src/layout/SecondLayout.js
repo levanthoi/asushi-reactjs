@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Helmet from "src/components/Helmet/Helmet";
+// import {}
 // import "src/static/css/product.scss";
 
 const payment = [
@@ -12,30 +13,32 @@ const payment = [
 const SecondLayout = ({ children }) => {
   return (
     <Helmet title="Thanh toán">
-      <div className="product-global main-global">
-        <div className="content-wrap">
-          <div className="shopping-cart-page payment-step1-page">
-            <section id="cart" className="cart">
-              <div className="container">
-                <div className="process-payment">
-                  <ul>
-                    {payment.map(({ id, link, title }) => (
-                      <li key={id}>
-                        <NavLink
-                          to={link}
-                          className={({ isActive }) =>
-                            isActive ? "active" : ""
-                          }
-                        >
-                          {title}
-                        </NavLink>
-                      </li>
-                    ))}
-                  </ul>
+      <div className="main-global">
+        <div className="product-global">
+          <div className="content-wrap">
+            <div className="shopping-cart-page payment-step1-page">
+              <section id="cart" className="cart">
+                <div className="container">
+                  <div className="process-payment">
+                    <ul>
+                      {payment.map(({ id, link, title }) => (
+                        <li key={id}>
+                          <NavLink
+                            to={link}
+                            className={({ isActive }) =>
+                              isActive ? "active" : ""
+                            }
+                          >
+                            {title}
+                          </NavLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  {children}
                 </div>
-                {children}
-              </div>
-            </section>
+              </section>
+            </div>
           </div>
         </div>
       </div>
