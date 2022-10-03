@@ -16,6 +16,7 @@ import SecondLayout from "src/layout/SecondLayout";
 import Bill from "src/pages/Bill";
 import PaymentDetail from "src/pages/PaymentDetail";
 import Payment from "src/pages/Payment";
+import VoucherDetail from "src/components/Voucher/VoucherDetail";
 
 const publicRoutes = [
   { path: "/", element: <Home /> },
@@ -25,6 +26,7 @@ const publicRoutes = [
   { path: '/product/:productId/:productIdChild', element: <ProductDetail />},
   { path: "/promotion", element: <Promotion /> },
   { path: "/voucher", element: <Voucher /> },
+  { path: "/voucher/:voucherId", element: <VoucherDetail /> },
   { path: "/book", element: <Book /> },
   { path: "/new", element: <New /> },
   { path: "/new/:newId", element: <NewDetail /> },
@@ -33,7 +35,7 @@ const publicRoutes = [
   { path: "/login", element: <Login /> },
   { path: "/bill", element: <Bill />, layout: SecondLayout },
   { path: "/paymentDetail", element: <PaymentDetail />, layout: SecondLayout },
-  { path: "/why-choose-us--pde,1121", element: <ChooseUs /> },
+  { path: "/about/:aboutId", element: <ChooseUs /> },
   { path: "/payment", element: <Payment />, layout: null },
 ];
 

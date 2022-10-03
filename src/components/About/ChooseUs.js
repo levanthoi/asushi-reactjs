@@ -1,7 +1,15 @@
 import React from "react";
+import { useParams } from "react-router-dom";
+import { DataAbout } from "src/data/data";
 import Banner from "../Banner/Banner";
 
 const ChooseUs = () => {
+  const aboutId = useParams();
+  const item = DataAbout
+                .find((curEle) => curEle.items).items
+                  .find(
+                    (curEle) => curEle.id == aboutId.aboutId
+                  );
   return (
     <>
       <Banner />
@@ -22,7 +30,7 @@ const ChooseUs = () => {
           <div className="container">
             <div className="new-content new-content2">
               <div className="box-description box-description-new">
-                <h1>Why choose us ?</h1>
+                <h1>{item.name}</h1>
                 <p>
                   <span
                     style={{
@@ -33,17 +41,7 @@ const ChooseUs = () => {
                       backgroundColor: "rgb(255, 255, 255)",
                     }}
                   >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Pellentesque quis eros lobortis, vestibulum turpis ac,
-                    pulvinar odio. Praesent vulputate a elit ac mollis. In sit
-                    amet ipsum turpis. Pellentesque venenatis, libero vel
-                    euismod lobortis, mi metus luctus augue, eget dapibus elit
-                    nisi eu massa.Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Pellentesque quis eros lobortis, vestibulum
-                    turpis ac, pulvinar odio. Praesent vulputate a elit ac
-                    mollis. In sit amet ipsum turpis. Pellentesque venenatis,
-                    libero vel euismod lobortis, mi metus luctus augue, eget
-                    dapibus elit nisi{" "}
+                    {item.desc}
                   </span>
                 </p>
               </div>

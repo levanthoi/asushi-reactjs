@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import images from 'src/static/images/images';
+import { DataCategory, DataProduct } from 'src/data/data';
+import { useSelector } from 'react-redux';
+import shop from 'src/helper/shop';
 
 const Bill = () => {
+  const cart = useSelector(state => state.cart).cart;
+  const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0)
   return (
     <>
       <div>
@@ -62,9 +66,11 @@ const Bill = () => {
                           </div>
                         </div>
                         <div className="cart-tbody">
-                          <ItemCardProduct />
-                          <ItemCardProduct />
-                          <ItemCardProduct />
+                          {cart.map(item => {
+                            return(
+                              <ItemCardProduct key={item.id} item={item} />
+                            )
+                          })}
                         </div>
                       </div>
                       <br />
@@ -72,15 +78,15 @@ const Bill = () => {
                         <p>
                           <strong>Tổng tiền: </strong>
                           <span className="price">
-                            <span className="pricetext">800.000</span>
-                            <span className="currencytext">đ</span>
+                            <span className="pricetext">{shop.formatProductPrice(totalPrice)}</span>
+                            {/* <span className="currencytext">đ</span> */}
                           </span>
                         </p>
                         <p>
                           <strong>Còn lại: </strong>
                           <span className="price">
-                            <span className="pricetext">800.000</span>
-                            <span className="currencytext">đ</span>
+                            <span className="pricetext">{shop.formatProductPrice(totalPrice)}</span>
+                            {/* <span className="currencytext">đ</span> */}
                           </span>
                         </p>
                       </div>
@@ -89,10 +95,8 @@ const Bill = () => {
                 </div>
               </section>
               <div className="foot-check-orderpaper">
-                {/* <a href="javascript:void(0)" id="printorder"> */}
                   <i className="fa fa-print" />
                   In hóa đơn{" "}
-                {/* </a> */}
               </div>
             </div>
           </div>
@@ -120,49 +124,53 @@ const CheckInfo = (props) => {
   )
 }
 
-const ItemCardProduct = () => {
+const ItemCardProduct = (props) => {
+  const {id, name, nameJapan, quantity, price, img} = props.item;
+  // const product = DataProduct.find(item => item.id === id);
+  // const category = DataCategory.find(item => item.id === product.categoryId);
+  // const urlCategory = category.url;
   return (
     <div className="item-cart productid-11088257">
       <div style={{ width: "18%" }} className="image">
         <Link
           className="product-image"
-          title="Salad Tôm Và Cá Ngừ - シュリンプと鮪のサラダ"
-          to="/food-name-pd,5556"
+          title={`${name} - ${nameJapan}`}
+          // to={`/product/${urlCategory}/food-name-${id}`}
         >
           <img
             width={75}
             height="auto"
-            alt="Salad Tôm Và Cá Ngừ - シュリンプと鮪のサラダ"
-            src={images.sp103}
+            alt={`${name} - ${nameJapan}`}
+            src={img}
           />
         </Link>
       </div>
       <div style={{ width: "31%" }} className="a-left">
         <h2 className="product-name">
           <Link
-            to="/food-name-pd,5556.html"
-            title="Salad Tôm Và Cá Ngừ - シュリンプと鮪のサラダ"
+            // to={`/product/${urlCategory}/food-name-${id}`}
+            // title={`/product/${urlCategory}/food-name-${id}`}
           >
-            Salad Tôm Và Cá Ngừ - シュリンプと鮪のサラダ
+            {name} - {nameJapan}
           </Link>
         </h2>
       </div>
       <div style={{ width: "15%" }} className="a-right">
         <span className="item-price">
           <span className="price">
-            <span className="pricetext">200.000</span>
-            <span className="currencytext">đ</span>
+            <span className="pricetext">{shop.formatProductPrice(price)}</span>
+            {/* <span className="currencytext">đ</span> */}
           </span>
         </span>
       </div>
       <div style={{ width: "14%" }} className="a-center">
-        <span>1</span>
+        <span>{quantity}</span>
       </div>
       <div style={{ width: "15%" }} className="a-center">
         <span className="cart-price">
           <span className="price">
-            <span className="pricetext">200.000</span>
-            <span className="currencytext">đ</span>
+            <span className="pricetext">{shop.formatProductPrice(price*quantity)}</span>
+            {/* <span className="currencytext">đ</span> */}
           </span>
         </span>
       </div>

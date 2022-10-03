@@ -1,4 +1,4 @@
-const cities = [
+const dataCity = [
 "--- Chọn, tỉnh/TP ---",
 "Hà Nội",
 "Hà Giang",
@@ -64,4 +64,4 @@ const cities = [
 "Bạc Liêu",
 "Cà Mau",]
 
-export default cities;
+export default dataCity;

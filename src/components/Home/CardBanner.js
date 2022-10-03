@@ -2,18 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const CardBanner = (props) => {
-    const {style, classText, title} = props;
+    const {id, title, img} = props.item;
   return (
     <div
-      className={`ashahi ${classText}`}
+      className={`ashahi ashahi${id}`}
       style={{
-        background: `url(${style}) no-repeat center`,
+        background: `url(${img}) no-repeat center`,
       }}
     >
       <div className="container">
-        <div className={`content-ashahi content-${classText} clearfix`}>
+        <div className={`content-ashahi content-ashahi${id} clearfix`}>
           <div className="view">
-            <Link to="/about" title={title}>
+            <Link to={id ===4 ? "/product" : "/about"} title={title}>
               {title}
             </Link>
           </div>

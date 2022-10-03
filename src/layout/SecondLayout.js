@@ -13,12 +13,12 @@ const payment = [
 const SecondLayout = ({ children }) => {
   return (
     <Helmet title="Thanh toán">
-      <div className="main-global">
-        <div className="product-global">
+      <div className="main-global product-global">
+        <div className="">
           <div className="content-wrap">
             <div className="shopping-cart-page payment-step1-page">
               <section id="cart" className="cart">
-                <div className="container">
+                <div className="container product-global ">
                   <div className="process-payment">
                     <ul>
                       {payment.map(({ id, link, title }) => (

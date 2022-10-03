@@ -7,7 +7,7 @@ import MenuProd from "./MenuProd";
 import { DataProduct } from "src/data/data";
 import { DataCategory } from "src/data/data";
 import shop from "src/helper/shop";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "src/redux/reducers/cartSlice";
 
 const CardProduct = () => {
@@ -81,7 +81,6 @@ const CardProduct = () => {
                     >
                       <div className="item-product item-product2">
                         <div className="box-img-product">
-                          {/* {console.log("list: ",listProduct)} */}
                           <Link
                             to={`/product/${category.url}`}
                             title="Khai vị - アペタイザー"

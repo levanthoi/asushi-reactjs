@@ -26,13 +26,13 @@
     {
       "id": 5,
       "name": "Thành phố/Tỉnh",
-      "field": "",
+      "field": "city",
       "isImportant": true
     },
     {
       "id": 6,
       "name": "Quận/Huyện/TX",
-      "field": "",
+      "field": "district",
       "isImportant": true
     },
     {

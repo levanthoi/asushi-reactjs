@@ -1,25 +1,29 @@
 import React, {useState, useEffect} from "react";
 import { Link, useParams } from "react-router-dom";
-import Banner from "../Banner/Banner";
-import PageAbout from "../PageAbout";
-import MenuProd from "./MenuProd";
-import { DataProduct } from "src/data/data";
 import shop from "src/helper/shop";
 import { useDispatch } from "react-redux";
 import { addToCart} from "src/redux/reducers/cartSlice";
+import { DataVoucher } from "src/data/data";
+import Banner from "../Banner/Banner";
+import PageAbout from "../PageAbout";
 
-
-const ProductDetail = () => {
-  const {productIdChild} = useParams();
-  const [productDetail, setProductDetail] = useState([]);
+const VoucherDetail = () => {
+  const { voucherId } = useParams();
+  const item = DataVoucher.find(
+    (ele) => ele.id === Number(voucherId)
+  );
+  const [voucherDetail, setVoucherDetail] = useState(item);
   const [quantity, setQuantity] = useState(1);
-  useEffect (() => {
-    const productDetail = DataProduct.filter((ele) => `food-name-${ele.id}` === productIdChild)
-    setProductDetail(productDetail[0]);
-  }, [productIdChild])
-
+  console.log("DataVoucher", DataVoucher);
+  useEffect(() => {
+    const voucherDetail = DataVoucher.find(
+      (ele) => ele.id === Number(voucherId)
+    );
+    console.log("voucherDetail", voucherDetail);
+    setVoucherDetail(voucherDetail);
+}, [voucherId]);
+    const {id, img, des, price, name, nameJapan} = voucherDetail;
   const dispatch = useDispatch();
-  const {id, img, des, price, name, nameJapan} = productDetail;
 
   const width = window.innerWidth;
   let BoxContainer = {};
@@ -27,7 +31,6 @@ const ProductDetail = () => {
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    console.log("quantity", quantity);
     const cartItem ={
       id: id,
       img: img,
@@ -42,13 +45,12 @@ const ProductDetail = () => {
     <>
       <Banner />
       <main id="main" className="main clearfix">
-        <PageAbout name="Thực đơn" nameJapan="麺類" />
-        <div className="page-menu page-menu3 clearfix">
+        <PageAbout name="Voucher" nameJapan="麺類" />
+        <div className="page-voucher page-voucher2 clearfix">
           <div className="container" style={BoxContainer}>
-            <div className="menu-title menu-title3">
-              <div className="menu-product-content menu-product2-content">
+            <div className="voucher-title voucher-title1">
+              <div className="voucher-product-content voucher-product2-content">
                 <div data-example-id="togglable-tabs">
-                  <MenuProd />
                   <div id="myTabContent" className="tab-content">
                     <div
                       role="tabpanel"
@@ -147,4 +149,4 @@ const ProductDetail = () => {
   );
 };
 
-export default ProductDetail;
+export default VoucherDetail;

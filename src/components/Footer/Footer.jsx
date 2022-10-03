@@ -1,10 +1,11 @@
 import React from 'react';
+import { DataAddress, DataHotline } from 'src/data/data';
 import images from 'src/static/images/images';
 
 const Footer = () => {
+  const HotlinePri = DataHotline.find(item => item.primary === true);
   return (
     <>
-
       <footer id="footer" className="footer clearfix">
         <div className="container">
           <div className="footer-top clearfix">
@@ -27,20 +28,17 @@ const Footer = () => {
             <div className="footer-top-right">
               <div className="ftr-content">
                 <div className="ftr-content-top">
-                  <div className="ftr-address ftr-address1">
-                    <span className="text-bold">Asahi Sushi 1 :</span>{" "}
-                    <span className="text-nomarl">
-                      Địa chỉ: 288 Bà Triệu - Hai Bà Trưng - Hà Nội/ Điện thoại:
-                      (84)4. 39745945
-                    </span>
-                  </div>
-                  <div className="ftr-address ftr-address1">
-                    <span className="text-bold">Asahi Sushi 2 :</span>{" "}
-                    <span className="text-nomarl">
-                      Địa chỉ: 76 Triệu Việt Vương - Hai Bà Trưng - Hà Nội/ Điện
-                      thoại: (84)4. 39447966
-                    </span>
-                  </div>
+                  {DataAddress.slice(0,2).map(item => {
+                    const {id, title, address, hotline} = item;
+                    return(
+                      <div key={id} className="ftr-address ftr-address1">
+                        <span className="text-bold">{title} :</span>
+                        <span className="text-nomarl">
+                          {`Địa chỉ: ${address}/Điện thoại: ${hotline}`}
+                        </span>
+                      </div>
+                    )
+                  })}
                 </div>
                 <div className="ftr-content-bottom">
                   <div className="ftr-copyright">
@@ -67,13 +65,13 @@ const Footer = () => {
             <ul>
               <li>
                 {" "}
-                <a href="http://facebook.com/" target="_blank" rel="noreferrer">
+                <a href="/" target="_blank" rel="noreferrer">
                   <i className="icon-fb" />
                 </a>
               </li>
               <li className="hotline">
                 <span />
-                <span style={{ color: "red" }}>0968 266 266</span>
+                <span style={{ color: "red" }}>{HotlinePri.hotline}</span>
               </li>
             </ul>
           </div>

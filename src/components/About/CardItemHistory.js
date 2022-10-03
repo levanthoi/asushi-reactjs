@@ -4,39 +4,30 @@ import images from 'src/static/images/images';
 
 
 const CardItemHistory = (props) => {
-  const {title} = props
+  const {id,name, img, desc} = props.item;
   return (
     <div className={`col-about-us1`}>
               <div className="box-title">
                 <h3>
                   <Link
-                    to="/why-choose-us--pde,1121"
-                    title={title}
+                    to={`/about/${id}`}
+                    title={name}
                   >
-                    {title}
+                    {name}
                   </Link>
                 </h3>
                 <div className="about-us-description">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Pellentesque quis eros lobortis, vestibulum turpis ac,
-                  pulvinar odio. Praesent vulputate a elit ac mollis. In sit
-                  amet ipsum turpis. Pellentesque venenatis, libero vel euismod
-                  lobortis, mi metus luctus augue, eget dapibus elit nisi eu
-                  massa.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Pellentesque quis eros lobortis, vestibulum turpis ac,
-                  pulvinar odio. Praesent vulputate a elit ac mollis. In sit
-                  amet ipsum turpis. Pellentesque venenatis, libero vel euismod
-                  lobortis, mi metus luctus augue, eget dapibus elit nisi{" "}
+                  {desc}
                 </div>
               </div>
               <div className="box-content">
                 <Link
-                  to="/why-choose-us--pde,1121"
-                  title="Chúng tôi là ai"
+                  to={`/about/${id}`}
+                  title={name}
                 >
                   <img
-                    src={images.imgaboutsp}
-                    alt="Chúng tôi là ai"
+                    src={img}
+                    alt={name}
                   />
                 </Link>
               </div>

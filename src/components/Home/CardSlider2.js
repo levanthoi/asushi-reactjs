@@ -1,8 +1,9 @@
 import React, { useRef } from "react";
-import images from "src/static/images/images";
 import Slider from "react-slick";
+import { DataSlide } from "src/data/data";
+const CardSlider2 = (props) => {
 
-const CardSlider2 = () => {
+  // const {id, img} = props.item;
   const sliderRef = useRef();
   const settings = {
     dots: false,
@@ -22,16 +23,18 @@ const CardSlider2 = () => {
     sliderRef.current.slickPrev();
   };
   return (
-    <div className="ashahi ashahi51">
+    <div className={`ashahi ashahi51`}>
       <div id="owl-demo" className="owl-carousel owl-theme">
         <div className="owl-item">
           <Slider {...settings} ref={sliderRef}>
-            <div>
+            {DataSlide.map((item) => (
+              <div key={item.id}>
+                <img u="image" src={item.img} alt={item.title} />
+              </div>
+            ))}
+            {/* <div>
               <img u="image" src={images.slider2} />
-            </div>
-            <div>
-              <img u="image" src={images.slider2} />
-            </div>
+            </div> */}
           </Slider>
         </div>
         <span u="arrowleft" className="owl-arrow-left" onClick={gotoPrev} />

@@ -7,6 +7,7 @@ import 'src/static/css/owl.carousel.css';
 import 'src/static/css/style-menu.scss';
 import 'src/static/css/style.scss';
 import 'src/static/css/product.scss';
+import 'src/static/css/book.scss';
 
 const DefaultLayout = ({children}) => {
   return (

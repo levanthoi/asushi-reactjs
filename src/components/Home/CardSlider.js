@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
+  import React, { useRef } from "react";
 import { Link } from "react-router-dom";
-import images from "src/static/images/images";
 import Slider from "react-slick";
+import { DataSlide } from "src/data/data";
+
 
 const CardSlider = () => {
   const sliderRef = useRef();
@@ -27,20 +28,15 @@ const CardSlider = () => {
     <div id="slider">
       <div className="slider1_container">
         <Slider {...settings} ref={sliderRef}>
-          <Link to="/" title="Rượu Sake - truyền thống Nhật Bản">
-            <img
-              u="image"
-              src={images.slider1}
-              alt="Rượu Sake - truyền thống Nhật Bản"
-            />
-          </Link>
-          <Link to="/" title="Rượu Sake - truyền thống Nhật Bản">
-            <img
-              u="image"
-              src={images.slider1}
-              alt="Rượu Sake - truyền thống Nhật Bản"
-            />
-          </Link>
+          {DataSlide.map(item => (
+            <Link key={item.id} to="/" title={item.title}>
+              <img
+                u="image"
+                src={item.img}
+                alt={item.title}
+              />
+            </Link>
+          ))}
         </Slider>
       </div>
       <span u="arrowleft" className="jssora05l" onClick={gotoPrev} />

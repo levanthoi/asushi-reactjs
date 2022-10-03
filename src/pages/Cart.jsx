@@ -7,12 +7,11 @@ import shop from 'src/helper/shop';
 
 
 const Cart = () => {
-  // console.log("cart", DataCart);
   console.log("b",useSelector(state => state.cart));
   const DataCart = useSelector(state => state.cart).cart;
   console.log("DataCart", DataCart);
+  console.log("data", DataCart);
   const cartTotal = DataCart.reduce((total, item) => total + item.quantity * item.price, 0);
-  // console.log("total: ", cartTotal);
   const [total, setTotal] = useState(cartTotal);
   const getTotalPrice = (data) => {
     return data.reduce((total, item) => total + item.quantity * item.price, 0);
@@ -22,7 +21,6 @@ const Cart = () => {
   }, [DataCart])
   return (
     <div className="product-global">
-      <>
         <div className="bg-cart-page hidden-xs">
           {DataCart.length > 0 ?
             <div className="row">
@@ -173,7 +171,6 @@ const Cart = () => {
             </div>
           </div>
         </div>
-      </>
 
     </div>
 

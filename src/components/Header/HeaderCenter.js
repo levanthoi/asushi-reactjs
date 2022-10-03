@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import images from "../../static/images/images";
-
+import {DataHotline } from 'src/data/data';
 
 const HeaderCenter = () => {
   const hoverHandle = () => {
     
   };
-
+  const HotlinePri = DataHotline.find(item => item.primary === true);
   
 
   return (
@@ -28,7 +28,7 @@ const HeaderCenter = () => {
             <i className="icon icon-hotline"> </i>
             <div className="text-content">
               <p>Hotline</p>
-              <a href="tel:0968 266 266">0968 266 266</a>
+              <a href={`tel:${HotlinePri.hotline}`}>{HotlinePri.hotline}</a>
             </div>
           </div>
         </div>
