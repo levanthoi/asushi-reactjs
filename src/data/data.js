@@ -11,6 +11,8 @@ import DataAddressJson from './DataAddress.json';
 import DataHotlineJson from './DataHotline.json';
 import DataAboutJson from './DataAbout.json';
 import DataVoucherJson from './DataVoucher.json';
+import DataBannerJson from './DataBanner.json';
+import DataLogoJson from './DataLogo.json';
 
 export const DataMenu = DataMenuJson;
 export const DataCategory = DataCategoryJson;
@@ -25,3 +27,5 @@ export const DataAddress = DataAddressJson;
 export const DataHotline = DataHotlineJson;
 export const DataAbout = DataAboutJson;
 export const DataVoucher = DataVoucherJson;
+export const DataBanner = DataBannerJson;
+export const DataLogo = DataLogoJson;

@@ -12,10 +12,10 @@ import { addToCart } from "src/redux/reducers/cartSlice";
 
 const CardProduct = () => {
   const { productId } = useParams();
-  const product = DataProduct.filter(
-    (product) => product.url_slug === productId
-  );
   const category = DataCategory.filter((menu) => menu.url === productId)[0];
+  const product = DataProduct.filter(
+    (product) => product.categoryId === category.id
+  );
   const [listProduct, setListProduct] = useState(product);
   const dispatch = useDispatch();
 
@@ -25,6 +25,16 @@ const CardProduct = () => {
     );
     setListProduct(product);
   }, [productId]);
+
+  // categories is your top level categories object and data is the children you posted
+// const tree = DataCategory.map(category => {
+//   return { 
+//     ...category,
+//     children: DataProduct.filter(child => child.categoryId === category.id)
+//   }
+// })
+// console.log("DataProduct", DataProduct);
+// console.log("tree", tree);
 
   const handleSubmit = (id, quantity, name, nameJapan, price, img) => {
     // e.preventDefault();

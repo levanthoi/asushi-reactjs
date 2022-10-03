@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
 import Banner from "src/components/Banner/Banner";
 import Helmet from "src/components/Helmet/Helmet";
 import PageAbout from "src/components/PageAbout";
 import CardPromotion from "src/components/Promotion/CardPromotion";
 import { DataPromotion } from "src/data/data";
-import images from "src/static/images/images";
 
 
 
@@ -58,7 +56,7 @@ const Promotion = () => {
                       >
                         <img
                           alt=""
-                          src={images[item.img]}
+                          src={item.img}
                         // style={{ width: 635, height: 890 }}
                         />
                       </div>

@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
-import images from "src/static/images/images";
 import { Link } from "react-router-dom";
 import shop from "src/helper/shop";
 import { useDispatch } from "react-redux";
 import { increaseCart, decreaseCart, updateCart, deleteFromCart } from "src/redux/reducers/cartSlice";
 
 const CartItem = (props) => {
-  const [toatlPrice, setTotalPrice] = useState(0);
-  // console.log("cart item data",props.item);
   const dispatch = useDispatch();
   const { id, name, img, price, quantity, nameJapan } = props.item;
   const [tempPrice, setTempPrice] = useState(price);
+  const categoryUrl = shop.getUrl(id);
 
   useEffect(() => {
     setTempPrice(quantity * price);
@@ -22,7 +20,7 @@ const CartItem = (props) => {
         <Link
           className="product-image"
           title={name}
-          // to={`/product/${url_slug}/food-name-${id}`}
+          to={categoryUrl && `/product/${categoryUrl}/food-name-${id}`}
         >
           <img width={75} height="auto" src={img} />
         </Link>
@@ -30,7 +28,7 @@ const CartItem = (props) => {
       <div style={{ width: "31%" }} className="a-left">
         <h2 className="product-name">
           <Link 
-          // to={`/product/${url_slug}/food-name-${id}`}
+          to={`/product/${categoryUrl}/food-name-${id}`}
            title={name}>
             {`${name} - ${nameJapan}`}
           </Link>

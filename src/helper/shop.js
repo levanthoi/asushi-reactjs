@@ -1,3 +1,4 @@
+import { DataProduct, DataCategory } from "src/data/data";
 
 // fn: format giá sản phẩm
 const formatProductPrice = (price) => {
@@ -43,9 +44,17 @@ const handleChange = (id, e, listProduct) => {
   return updateCart;
 }
 
+//get link url Routes
+const getUrl = (id) => {
+  const product = DataProduct.find(curElem => curElem.id === id);
+  const category = DataCategory.find(curElem => curElem.id === product.categoryId);
+  return category.url;
+}
+
 export default {
     formatProductPrice,
     inCrease,
     deCrease,
-    handleChange
+    handleChange,
+    getUrl
 }

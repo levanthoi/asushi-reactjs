@@ -5,16 +5,16 @@ const CartButton = (props) => {
     const {title, path, class1} =props;
   return (
     <li>
+      <Link to={path}>
       <button
         className={`button ${class1}`}
         aria-label={title}
         title={title}
         type="button"
       >
-        <Link to={path}>
             <span>{title}</span>
-        </Link>
       </button>
+        </Link>
     </li>
   );
 };

@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import images from "../../static/images/images";
-import {DataHotline } from 'src/data/data';
+import {DataHotline, DataLogo } from 'src/data/data';
 
 const HeaderCenter = () => {
   const hoverHandle = () => {
     
   };
   const HotlinePri = DataHotline.find(item => item.primary === true);
+  const logo = DataLogo[0].img;
   
 
   return (
@@ -19,7 +20,7 @@ const HeaderCenter = () => {
         <div className="header-center-cont1 logo">
           <div className="box-img box-img-logo">
             <Link to="/" title="Asahi">
-              <img title="#" src={images.logo} alt="Asahi" />
+              <img title="#" src={logo} alt="Asahi" />
             </Link>
           </div>
         </div>

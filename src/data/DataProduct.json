@@ -1,7 +1,6 @@
 [
     {
       "id": 1,
-      "url_slug":"khai-vi",
       "name": "Nộm sứa",
       "nameJapan": "シュリンプと鮪のサラダ",
       "price": 40000,
@@ -12,7 +11,6 @@
     },
     {
       "id": 2,
-      "url_slug": "mon-nuong",
       "name": "Bạch tuộc nướng",
       "nameJapan": "シュリンプと鮪のサラダ",
       "price": 75000,
@@ -23,7 +21,6 @@
     },
     {
       "id": 3,
-      "url_slug": "sashi",
       "name": "Sashimi cá hồi",
       "nameJapan": "シュリンプと鮪のサラダ",
       "price": 100000,
@@ -34,7 +31,6 @@
     },
     {
       "id": 4,
-      "url_slug": "mon-chien",
       "name": "Thịt heo chiên",
       "nameJapan": "シュリ鮪のサラダ",
       "price": 50000,
@@ -45,7 +41,6 @@
     },
     {
       "id": 5,
-      "url_slug": "com-chao",
       "name": "Cháo thịt bằm khoai lang",
       "nameJapan": "シュリンプと鮪のサラダ",
       "price": 30000,
@@ -56,7 +51,6 @@
     },
     {
       "id": 6,
-      "url_slug": "mon-mi",
       "name": "Mì xào thập cẩm",
       "nameJapan": "シュリンプと鮪のサラダ",
       "price": 30000,
@@ -67,7 +61,6 @@
     },
     {
       "id": 7,
-      "url_slug": "teppanyaki",
       "url": "food-name-7",
       "name": "Kobe Teppanyaki Nhật Bản",
       "nameJapan": "シュと鮪のサラダ",
@@ -79,7 +72,6 @@
     },
     {
       "id": 8,
-      "url_slug": "mon-om",
       "name": "Ốc om chuối",
       "nameJapan": "シュリンプとラダ",
       "price": 30000,
@@ -90,7 +82,6 @@
     },
     {
       "id": 9,
-      "url_slug": "mon-lau",
       "name": "Lẩu mắm",
       "nameJapan": "シュ",
       "price": 140000,
@@ -101,7 +92,6 @@
     },
     {
       "id": 10,
-      "url_slug": "mon-dac-biet",
       "name": "Đậu rim mặn ngọt",
       "nameJapan": "シュリンプと鮪のサラダ",
       "price": 35000,
@@ -112,7 +102,6 @@
     },
     {
       "id": 11,
-      "url_slug": "khai-vi",
       "name": "Nộm gà hoa chuối",
       "nameJapan": "シュのサラダ",
       "price": 35000,
@@ -123,7 +112,6 @@
     },
     {
       "id": 12,
-      "url_slug": "khai-vi",
       "name": "Nộm bò bóp thấu",
       "nameJapan": "シサラダ",
       "price": 15000,

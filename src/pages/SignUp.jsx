@@ -40,11 +40,11 @@ const SignUp = () => {
                         name="Users[sex]"
                         id="Users_sex"
                       >
-                        <option value={0} selected="selected">
+                        <option value="" selected="selected">
                           Chưa xác định
                         </option>
-                        <option value={1}>Nam</option>
-                        <option value={2}>Nữ</option>
+                        <option value="">Nam</option>
+                        <option value="">Nữ</option>
                       </select>
                     </div>
                   </div>
